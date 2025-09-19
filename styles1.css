@@ -168,6 +168,26 @@ b2 {
   padding-inline: 15px;
 }
 
+.letering1 {
+  text-align: center;
+  margin-top: 0px;
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+  font-size: 30px;
+  color: transparent;
+  background-image: linear-gradient(
+    90deg,
+    rgba(203, 152, 36, 1) 0%,
+    rgba(206, 119, 74) 50%,
+    rgba(193, 81, 35) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  padding-inline: 15px;
+}
+
 .floresHome {
   margin-top: -100px;
   /*! width: 50px; */
