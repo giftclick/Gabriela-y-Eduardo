@@ -441,6 +441,7 @@ svg#flower-frame {
   font-family: "PT Serif";
   font-weight: 1000;
   color: transparent;
+  margin-block: -30px;
 }
 
 #Footer_group_1_,
