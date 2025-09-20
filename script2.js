@@ -1,3 +1,28 @@
+// Function to get URL parameters
+function getUrlParameter() {
+    const queryString = window.location.search;
+    return queryString;
+}
+
+// Function to handle navigation while preserving parameters
+function handleNavigation(event, targetPage) {
+    event.preventDefault();
+    const currentParams = getUrlParameter();
+    window.location.href = targetPage + currentParams;
+}
+
+// Add event listeners when the document is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Find all links to handle
+    const links = document.querySelectorAll('a[href="index.html"], a[href="home.html"]');
+    
+    links.forEach(link => {
+        link.addEventListener('click', function(event) {
+            handleNavigation(event, this.getAttribute('href'));
+        });
+    });
+});
+
 var strokesLeftBottom = $('#LeftBottomGroup_1_ path[id^=Stroke]').toArray().reverse();
 var strokesLeftTop = $('#LeftTopGroup_1_ path[id^=Stroke]').toArray().reverse();
 var strokesRightBottom = $('#RightBottomGroup_1_ path[id^=Stroke]').toArray().reverse();

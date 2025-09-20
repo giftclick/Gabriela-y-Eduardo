@@ -10,6 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <meta property="og:image" content="rings.jpg">
+    <script src="script2.js" defer></script>
     <title>Nuestra Boda Gabriela y Eduardo</title>
 </head>
 
@@ -40,13 +41,87 @@
         </div>
         <h2>de vivir nuestro día especial con tu compañia.</h2>
     </div>
+    <div class="personal" style="margin-top: 50px;">
+        <div class="section-title title" id="passes-title" style="margin-bottom: 25px;">Pase</div>
+        <h1 class="footer subtitle" id="name"
+            style="text-align: center; font-size:30px; font-weight: bold; margin-block: 5px;"></h1>
+        <div class="footer subtitle reveal-left" style="margin-bottom: 5px;">
+            Tenemos Reservado <br>
+        </div>
+        <p id="passnumbers" class="subtitle reveal-left">1</p>
+        <div class="footer text" id="places-text" style="margin-top:10px">
+            Lugar
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Obtener información de la URL
+            const urlParams = window.location.search;
+
+            if (urlParams) {
+                // Quitar el '?' del inicio
+                const paramsString = urlParams.substring(1);
+
+                // Decodificar los parámetros de la URL
+                const decodedParams = decodeURIComponent(paramsString);
+
+                // Dividir por guiones
+                const parts = decodedParams.split('-');
+
+                // Si hay suficientes partes (nombre, apellido, número)
+                if (parts.length >= 3) {
+                    const firstName = parts[0];
+                    const lastName = parts[1];
+                    const numPasses = parts[2];
+
+                    // Actualizar el contenido de la página
+                    document.getElementById('name').textContent = `${firstName} ${lastName}`;
+                    document.getElementById('passnumbers').textContent = numPasses;
+
+                    // Cambiar singular/plural según el número
+                    if (numPasses === "1") {
+                        document.getElementById('passes-title').textContent = "Pase";
+                        document.getElementById('places-text').textContent = "Lugar";
+                    } else {
+                        document.getElementById('passes-title').textContent = "Pases";
+                        document.getElementById('places-text').textContent = "Lugares";
+                    }
+                }
+            }
+        });
+    </script>
+    <style>
+
+        #passes-title {
+            color: #c76234;
+        }
+
+        #passnumbers {
+            border: 3px solid #c76234;
+            text-align: center;
+            padding-inline: 50px;
+            font-size: 80px;
+            margin: 15px;
+            color: #c76234;
+        }
+
+        .personal {
+            display: flex;
+            justify-items: center;
+            align-items: center;
+            flex-direction: column;
+            color: #c76234;
+        }
+    </style>
     <h4>Toca el sobre para abrir la invitación</h4>
     <div class="carta">
         <a href="home.html" id="envb"><img class="cartaInside" src="envelope.PNG" alt="carta"></a>
         <img src="flor2.PNG" alt="flores" id="floresHome">
     </div>
-    <div class="totens">
-        <div class="anim-anillos" class="toten1" id="toten1">
+    
+
+    <div id="confirmar-asistencia" class="totens" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <div class="anim-anillos toten1" id="toten1"></div>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" width="150" height="150"
                 preserveAspectRatio="xMidYMid meet">
                 <defs>
@@ -83,7 +158,8 @@
             </svg>
             <p>Comfirmar Asistencia</p>
         </div>
-        <div class="toten1a"><a target="_blank" class="b2"
+        <div class="toten1a" style="display: flex; justify-content: center; width: 100%; margin-top: 10px;">
+            <a target="_blank" class="b2"
                 href="https://api.whatsapp.com/send?phone=+51984060070&text=Sí,%20podr%C3%A9%20asistir%20a%20la%20boda%20el%20día%20viernes%2024%20de%20octubre,%20mi%20nombre%20y%20apellido%20es…">Novios</a>
         </div>
     </div>
@@ -107,9 +183,8 @@
             </svg>
             <p class="vendimiatext">Recepciones Golden</p>
         </div>
-        <div class="toten3a"><a class="b2"
-                href="https://maps.app.goo.gl/ZmrL9bGN6KKeXN9Q9"
-                target="_blank">¿Cómo llegar?</a></div>
+        <div class="toten3a"><a class="b2" href="https://maps.app.goo.gl/ZmrL9bGN6KKeXN9Q9" target="_blank">¿Cómo
+                llegar?</a></div>
 
         <div class="toten4">
             <div><svg width="100px" height="200px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
