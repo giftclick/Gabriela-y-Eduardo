@@ -165,17 +165,32 @@ document.addEventListener('scroll', function() {
     const playBtn = document.getElementById('play-btn');
     const stopBtn = document.getElementById('stop-btn');
     const playIcon = playBtn.querySelector('i');
+
+    function updatePlayButton(isPlaying) {
+      if (isPlaying) {
+        playIcon.classList.remove('fa-play');
+        playIcon.classList.add('fa-pause');
+      } else {
+        playIcon.classList.remove('fa-pause');
+        playIcon.classList.add('fa-play');
+      }
+    }
   
     // Controlar el botón de reproducción
     playBtn.addEventListener('click', function() {
       if (music.paused) {
-        music.play();
-        playIcon.classList.remove('fa-play');
-        playIcon.classList.add('fa-pause');
+        const playPromise = music.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            updatePlayButton(true);
+          }).catch(error => {
+            console.log('Play failed:', error);
+            updatePlayButton(false);
+          });
+        }
       } else {
         music.pause();
-        playIcon.classList.remove('fa-pause');
-        playIcon.classList.add('fa-play');
+        updatePlayButton(false);
       }
     });
   
@@ -183,18 +198,34 @@ document.addEventListener('scroll', function() {
     stopBtn.addEventListener('click', function() {
       music.pause();
       music.currentTime = 0;
-      playIcon.classList.remove('fa-pause');
-      playIcon.classList.add('fa-play');
+      updatePlayButton(false);
+    });
+
+    // Event listeners for track end
+    music.addEventListener('ended', function() {
+      if (!music.loop) {
+        updatePlayButton(false);
+      }
+    });
+
+    // Event listener for track playing
+    music.addEventListener('playing', function() {
+      updatePlayButton(true);
+    });
+
+    // Event listener for track paused
+    music.addEventListener('pause', function() {
+      updatePlayButton(false);
     });
   
     // Reproducir música automáticamente cuando se carga la página si es permitido
     const playPromise = music.play();
     if (playPromise !== undefined) {
       playPromise.then(() => {
-        // La reproducción comenzó con éxito
+        updatePlayButton(true);
       }).catch(error => {
-        // La reproducción automática fue bloqueada
         console.log('Autoplay failed:', error);
+        updatePlayButton(false);
       });
     }
   });
