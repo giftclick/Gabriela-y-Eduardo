@@ -57,6 +57,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             // Obtener información de la URL
             const urlParams = window.location.search;
+            const personalSection = document.querySelector('.personal');
 
             if (urlParams) {
                 // Quitar el '?' del inicio
@@ -86,7 +87,15 @@
                         document.getElementById('passes-title').textContent = "Pases";
                         document.getElementById('places-text').textContent = "Lugares";
                     }
+                    // Mostrar la sección personal
+                    personalSection.style.display = 'flex';
+                } else {
+                    // Si no hay suficientes partes, ocultar la sección
+                    personalSection.style.display = 'none';
                 }
+            } else {
+                // Si no hay parámetros en la URL, ocultar la sección
+                personalSection.style.display = 'none';
             }
         });
     </script>
